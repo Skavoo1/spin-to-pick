@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spin-To-Pick</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div>
+        <h1>🎡 Spin-To-Pick</h1>
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Status](https://img.shields.io/badge/status-live-brightgreen.svg)
+
+        <p class="sub">Drop in options, spin the wheel, get a decision — plus odds & results.</p>
+      </div>
+      <button id="btnTheme" class="ghost" title="Toggle theme" aria-label="Toggle theme">🌓</button>
+    </header>
+
+    <section class="grid">
+      <!-- LEFT: WHEEL -->
+      <div class="card">
+        <h2>Wheel</h2>
+
+        <div class="wheelBox">
+          <div class="pointer" aria-hidden="true"></div>
+          <canvas id="wheel" width="520" height="520"></canvas>
+        </div>
+
+        <div class="row">
+          <button id="btnSpin" class="spin">🎯 Spin</button>
+          <button id="btnShuffle" class="secondary">Shuffle</button>
+          <button id="btnReset" class="secondary">Reset</button>
+        </div>
+
+        <div class="result" aria-live="polite">
+          <span class="label">Result:</span>
+          <strong id="resultText">—</strong>
+          <button id="btnCopy" class="ghost" disabled>Copy</button>
+        </div>
+
+        <div class="row statsRow">
+          <button id="btnResetStats" class="danger">Reset Results</button>
+          <span class="muted small" id="totalSpinsText">Total spins: 0</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: OPTIONS + STATS -->
+      <div class="card">
+        <h2>Options</h2>
+
+        <div class="row">
+          <input id="newItem" type="text" placeholder="Add an option (e.g., Sushi)" />
+          <button id="btnAdd" class="secondary">Add</button>
+        </div>
+
+        <div class="row chips" id="chips"></div>
+
+        <div class="row">
+          <select id="preset" class="select">
+            <option value="">Load a preset…</option>
+            <option value="food">🍔 Food</option>
+            <option value="movie">🎬 Movie Night</option>
+            <option value="workout">🏋️ Workout</option>
+            <option value="study">📚 Study</option>
+            <option value="chores">🧼 Chores</option>
+          </select>
+          <button id="btnSaveList" class="secondary">Save List</button>
+        </div>
+
+        <div class="row">
+          <select id="savedLists" class="select">
+            <option value="">Saved lists…</option>
+          </select>
+          <button id="btnLoadList" class="secondary">Load</button>
+          <button id="btnDeleteList" class="danger">Delete</button>
+        </div>
+
+        <p class="hint">
+          Tip: Press <kbd>Enter</kbd> to add. Works offline. Saves to your browser.
+        </p>
+
+        <hr class="sep" />
+
+        <div class="twoCol">
+          <section>
+            <h3 class="sectionTitle">🎲 Odds</h3>
+            <p class="small muted">Theoretical chance per option (equal probability).</p>
+            <div id="oddsList" class="list"></div>
+          </section>
+
+          <section>
+            <h3 class="sectionTitle">📈 Results</h3>
+            <p class="small muted">Observed outcomes based on your spins.</p>
+            <div id="resultsList" class="list"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <small>Made with vanilla HTML/CSS/JS • No libraries</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
